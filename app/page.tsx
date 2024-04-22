@@ -10,6 +10,7 @@ export default async function Home() {
       <div className="flex flex-col items-center">
         <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:gap-6 w-full">
           {teamsData.map((team: Team) => {
+            console.log(team);
             return <TeamSummaryCard team={team} key={team.id} />;
           })}
         </div>

@@ -71,6 +71,9 @@ const TeamSummaryCard = ({ team }: Props) => {
               {team.stats?.otLosses}
             </h4>
           </div>
+          <div className="flex justify-around">
+            <h5 className="text-sm">{team?.stats?.gamesPlayed} GP</h5>
+          </div>
         </div>
       </CardHeader>
 
