@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.15",
     "@nhl-api/teams": "^3.1.4",
+    "@table-library/react-table-library": "^4.1.7",
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18"
