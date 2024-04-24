@@ -21,6 +21,7 @@ export const combineStatsAndSummary = (data: any) => {
         //we need to normalize the strings to compare them
         //this is done by converting the strings to uppercase and removing diacritics
         //the canadiens in the nhl-api/teams package is spelled with an accent
+        
         return dataTeam.teamFullName.toUpperCase().normalize('NFD').replace(/\p{Diacritic}/gu, "") === team.name.toUpperCase().normalize('NFD').replace(/\p{Diacritic}/gu, "");
       }),
     };

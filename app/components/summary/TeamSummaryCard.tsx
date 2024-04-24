@@ -3,6 +3,7 @@ import { Team } from "@/app/types/team";
 import Image from "next/image";
 import React from "react";
 import emotionStyled from "@emotion/styled";
+import Link from "next/link";
 type TeamColorProps = {
   teamColors: {
     primary: string;
@@ -35,6 +36,35 @@ const LogoContainer = emotionStyled.div<TeamColorProps>((props) => ({
 
 type Props = {
   team: Team;
+};
+
+const mapStatsObject = (stats: any) => {
+  return Object.keys(stats).map((key) => {
+    const keysToIgnore = [
+      "wins",
+      "losses",
+      "otLosses",
+      "gamesPlayed",
+      "ties",
+      "teamId",
+      "teamFullName",
+      "seasonId",
+    ];
+
+    if (keysToIgnore.includes(key)) return null;
+    //format key to capitalize first letter and space out camel case
+    const value = stats[key];
+    key = key.replace(/([A-Z])/g, " $1");
+    key = key.charAt(0).toUpperCase() + key.slice(1);
+
+    return (
+      <div className="p-2" key={key}>
+        <span className="font-bold">
+          {key}: {value}
+        </span>
+      </div>
+    );
+  });
 };
 
 const TeamSummaryCard = ({ team }: Props) => {
@@ -77,8 +107,8 @@ const TeamSummaryCard = ({ team }: Props) => {
         </div>
       </CardHeader>
 
-      <div>
-        <ul>{JSON.stringify(team.stats, null, 2)}</ul>
+      <div className="flex">
+        <div>{mapStatsObject(team.stats)}</div>
       </div>
     </div>
   );
