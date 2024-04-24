@@ -56,3 +56,20 @@ export async function retrieveCurrentSeasonSummary(teamId: number | null = null)
     return datToReturn;
 
   }
+
+  export async function getPlayOffCount(teamAbbr: string) {
+    const res = await fetch(
+      `https://api-web.nhle.com/v1/club-stats-season/${teamAbbr}`
+    );
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+  
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+    const data = await res.json();
+    return data.map((game: any) => game.gameTypes).flat().filter((gameType: number) => gameType === 3).length;
+
+    
+  }

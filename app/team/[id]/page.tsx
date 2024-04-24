@@ -1,4 +1,5 @@
 import {
+  getPlayOffCount,
   retrieveAllStats,
   retrieveCurrentSeasonSummary,
 } from "@/app/components/data/retrieveCurrentSeasonSummary";
@@ -17,15 +18,17 @@ const Team = async ({ params }: { params: { id: string } }) => {
   const teamId = parseInt(params.id);
   const teamData = (await retrieveCurrentSeasonSummary(teamId)) as Team;
   const allStats = await retrieveAllStats(teamId);
+  const playoffCount = await getPlayOffCount(teamData.abbreviation);
   return (
     <div>
       <div
         style={{
           color: teamData.colors[0],
         }}
-        className="text-xl font-bold w-full"
+        className="text-xl font-bold w-full flex flex-col"
       >
-        {teamData.name}
+        <span>{teamData.name}</span>
+        <span className="text-white">Playoff Appearances: {playoffCount}</span>
       </div>
       <span className="text-center">Historical Season Stats</span>
       <div className="flex flex-wrap w-full ">
