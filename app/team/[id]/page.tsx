@@ -17,7 +17,6 @@ const Team = async ({ params }: { params: { id: string } }) => {
   const teamId = parseInt(params.id);
   const teamData = (await retrieveCurrentSeasonSummary(teamId)) as Team;
   const allStats = await retrieveAllStats(teamId);
-  console.log(teamData);
   return (
     <div>
       <div
